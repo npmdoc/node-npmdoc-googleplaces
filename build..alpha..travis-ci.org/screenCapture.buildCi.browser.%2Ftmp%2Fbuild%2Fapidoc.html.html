@@ -1,0 +1,205 @@
+<html><head></head><body><div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a href="https://github.com/Srirangan/googleplaces.js">googleplaces (v0.6.1)</a>
+</h1>
+<h4>Node.js library for the Google Places API</h4>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.googleplaces">module googleplaces</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.googleplaces.googleplaces">
+            function <span class="apidocSignatureSpan"></span>googleplaces
+            <span class="apidocSignatureSpan">(apiKey, outputFormat)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">googleplaces.</span>validate</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.googleplaces.validate">module googleplaces.validate</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.googleplaces.validate.apiKey">
+            function <span class="apidocSignatureSpan">googleplaces.validate.</span>apiKey
+            <span class="apidocSignatureSpan">(apiKey)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.googleplaces.validate.outputFormat">
+            function <span class="apidocSignatureSpan">googleplaces.validate.</span>outputFormat
+            <span class="apidocSignatureSpan">(outputFormat)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.googleplaces" id="apidoc.module.googleplaces">module googleplaces</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.googleplaces.googleplaces" id="apidoc.element.googleplaces.googleplaces">
+        function <span class="apidocSignatureSpan"></span>googleplaces
+        <span class="apidocSignatureSpan">(apiKey, outputFormat)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">googleplaces = function (apiKey, outputFormat) {
+    return {
+        placeSearch: new PlaceSearch(apiKey, outputFormat),
+        radarSearch: new RadarSearch(apiKey, outputFormat),
+        textSearch: new TextSearch(apiKey, outputFormat),
+        placeDetailsRequest: new PlaceDetailsRequest(apiKey, outputFormat),
+        placeAutocomplete: new PlaceAutocomplete(apiKey, outputFormat),
+        addEvent: new AddEvent(apiKey, outputFormat),
+        deleteEvent: new DeleteEvent(apiKey, outputFormat),
+        eventDetails: new EventDetails(apiKey, outputFormat),
+        imageFetch: new ImageFetch(apiKey),
+        nearBySearch: new NearBySearch(apiKey, outputFormat)
+
+    };
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.googleplaces.validate" id="apidoc.module.googleplaces.validate">module googleplaces.validate</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.googleplaces.validate.apiKey" id="apidoc.element.googleplaces.validate.apiKey">
+        function <span class="apidocSignatureSpan">googleplaces.validate.</span>apiKey
+        <span class="apidocSignatureSpan">(apiKey)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">apiKey = function (apiKey) {
+    if (!apiKey) callback(new Error("apiKey must not be null"));
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    var https = require("https");
+
+    var HttpResponseProcessor = require("./HttpResponseProcessor.js");
+    var validate = require("./validate.js");
+
+    module.exports = function (apiKey, outputFormat) {
+        return function (parameters, callback) {
+validate.<span class="apidocCodeKeywordSpan">apiKey</span>(apiKey);
+validate.outputFormat(outputFormat);
+
+var url_params = {
+    key: apiKey,
+    sensor: parameters.sensor || false
+};
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.googleplaces.validate.outputFormat" id="apidoc.element.googleplaces.validate.outputFormat">
+        function <span class="apidocSignatureSpan">googleplaces.validate.</span>outputFormat
+        <span class="apidocSignatureSpan">(outputFormat)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">outputFormat = function (outputFormat) {
+    var validFormats = ["json", "xml"];
+    if (validFormats.indexOf(outputFormat) === -1)  callback(new Error("outputFormat must be 'json' or 'xml'"));
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+    var HttpResponseProcessor = require("./HttpResponseProcessor.js");
+    var validate = require("./validate.js");
+
+    module.exports = function (apiKey, outputFormat) {
+        return function (parameters, callback) {
+validate.apiKey(apiKey);
+validate.<span class="apidocCodeKeywordSpan">outputFormat</span>(outputFormat);
+
+var url_params = {
+    key: apiKey,
+    sensor: parameters.sensor || false
+};
+
+delete parameters.sensor;
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
+</body></html>
